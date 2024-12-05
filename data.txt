@@ -1,0 +1,44 @@
+generate=t.Button(text="Generate Password", highlightthickness=0,command=PASSWORD_GENERATOR,fg=RED)
+generate.grid(column=2,row=3)
+add=t.Button(text="Add", highlightthickness=0,width=47,command=save)
+add.grid(row=4,column=1,columnspan=2)
+search=t.Button(text="Search", highlightthickness=0,width=14,fg=RED,command=ok)
+search.grid(column=2,row=1)
+screen.mainloop()
+
+
+
+
+def find_password():
+    website = ewebsite.get()
+    with open("data.json","r") as f:
+        data=json.load(f)
+        if ewebsite in data:
+            email=data[website]["email"]
+            password=data[website]["password"]
+            messagebox.showinfo(title=website,message=f"Email:{email}\npassword:{password})
+
+
+
+
+def ok():
+    w = ewebsite.get()
+    p = epassword.get()
+    e = email.get()
+    with open("data.json","r") as f:
+        data=json.load(f)
+        print(data)
+
+
+
+
+#entry
+ewebsite = t.Entry(width=37)
+ewebsite.focus()
+epassword=t.Entry(width=37)
+email=t.Entry(width=55)
+email.insert(0,"xyz@gmail.com")
+ewebsite.grid(column=1,row=1)
+epassword.grid(column=1,row=3)
+email.grid(column=1,row=2,columnspan=2)
+
